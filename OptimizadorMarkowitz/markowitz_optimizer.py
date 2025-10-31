@@ -30,8 +30,10 @@ class PortfolioResult:
 def download_prices(tickers: Dict[str, str], start: dt.date, end: dt.date) -> pd.DataFrame:
     """Descarga los precios ajustados para los tickers especificados."""
 
-    data = yf.download(list(tickers.values()), start=start, end=end, progress=False)["Adj Close"]
-    data.rename(columns={ticker: name for name, ticker in tickers.items()}, inplace=True)
+    data = yf.download(list(tickers.values()), start=start,
+                       end=end, progress=False)["Adj Close"]
+    data.rename(columns={ticker: name for name,
+                ticker in tickers.items()}, inplace=True)
     return data.dropna()
 
 
